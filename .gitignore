@@ -5,6 +5,10 @@
 *.swo
 *~
 
+# Project Documentation (Internal)
+CLAUDE.md
+timer-prd.md
+
 # OS generated files
 .DS_Store
 .DS_Store?
