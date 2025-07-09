@@ -323,7 +323,6 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 ## 🙏 Acknowledgments
 
-- Inspired by [StageTimer.io](https://stagetimer.io) - providing a free alternative
 - Built with [Spring Boot](https://spring.io/projects/spring-boot) and [React](https://reactjs.org/)
 - Redis for fast, reliable state management
 - The open-source community for continuous inspiration
@@ -331,7 +330,6 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 ## 📞 Support
 
 - 📧 **Email**: support@timerfy.io
-- 💬 **Discord**: [Join our community](https://discord.gg/timerfy)
 - 🐛 **Issues**: [GitHub Issues](https://github.com/popand/Timerfy/issues)
 - 📖 **Documentation**: [docs.timerfy.io](https://docs.timerfy.io)
 
