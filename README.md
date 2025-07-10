@@ -24,12 +24,13 @@ Timerfy is a web-based distributed countdown timer system designed as a free, op
 
 - **🚀 Real-time Synchronization**: Sub-100ms latency across all connected devices
 - **🏗️ Decoupled Architecture**: Independent client and server applications
-- **📱 Multi-device Support**: Works seamlessly across desktop, tablet, and mobile
+- **📱 Multi-device Support**: Works seamlessly across desktop, tablet, and mobile ([See UI Previews](#-upcoming-client-applications))
 - **⚡ High Performance**: Supports 50+ concurrent rooms with 20+ viewers each
 - **🔄 Auto-cleanup**: Rooms automatically expire after 24 hours
 - **🎨 Customizable**: Flexible timer configurations and message system
 - **🔌 API-First**: Complete functionality accessible via REST APIs
 - **📡 WebSocket Events**: Live updates without polling
+- **👥 Dual Interface**: Separate controller and viewer experiences optimized for each use case
 
 ### 🎪 Use Cases
 
@@ -172,6 +173,232 @@ The **Timerfy Server is production-ready** for core functionality:
 - **Phase 3**: React Client Foundation (Coming Soon)
 - **Phase 4**: Client UI Implementation
 - **Phase 5**: Polish and Deployment
+
+## 📱 Upcoming Client Applications
+
+> **🚀 Server Ready!** The Timerfy server is complete and running. These client applications will connect to the existing API and WebSocket endpoints.
+
+Timerfy will feature responsive React applications optimized for different devices and use cases. Here's what to expect:
+
+### 🖥️ **Desktop Web Application**
+
+#### **Controller Interface** (For Presenters/Organizers)
+```
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│ Timerfy - Room: ABC123                                    ⚙️ Settings  👤 Host │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                 │
+│  🕐 Timer 1: "Presentation"        [▶️ Start] [⏸️ Pause] [⏹️ Stop] [🔄 Reset]    │
+│      15:00 / 20:00                 ⚠️ Warning: 5 min    🚨 Critical: 2 min      │
+│                                                                                 │
+│  🕐 Timer 2: "Q&A Session"         [▶️ Start] [⏸️ Pause] [⏹️ Stop] [🔄 Reset]    │
+│      00:00 / 10:00                 📝 [Edit Timer]                             │
+│                                                                                 │
+│  ➕ Add New Timer                   📊 Room Stats: 12 viewers connected        │
+│                                                                                 │
+│ ─────────────────────────────────────────────────────────────────────────────── │
+│                                                                                 │
+│  💬 Messages                                        🎨 Style  📢 Priority       │
+│  ┌─────────────────────────────────────────────────────────────────────────┐   │
+│  │ 🔴 CRITICAL: "Break ends in 2 minutes"         [👁️ Show] [✏️ Edit] [🗑️]    │
+│  │ 🟡 HIGH: "Please submit your questions"        [👁️ Show] [✏️ Edit] [🗑️]    │
+│  │ 🔵 NORMAL: "Welcome to our presentation"       [👁️ Show] [✏️ Edit] [🗑️]    │
+│  └─────────────────────────────────────────────────────────────────────────┘   │
+│                                                                                 │
+│  📝 [Type new message...]                          [🎯 Priority ▼] [📤 Send]   │
+│                                                                                 │
+└─────────────────────────────────────────────────────────────────────────────────┘
+```
+
+#### **Viewer Interface** (For Audience)
+```
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                              🔗 timerfy.io/ABC123                              │
+│                                                                                 │
+│                                                                                 │
+│                              ⏰ PRESENTATION                                   │
+│                                                                                 │
+│                                   15:32                                        │
+│                                                                                 │
+│                              ⚠️ WARNING STATE                                   │
+│                                                                                 │
+│                                                                                 │
+│ ┌─────────────────────────────────────────────────────────────────────────────┐ │
+│ │ 🔴 Break ends in 2 minutes - Please return to your seats                   │ │
+│ └─────────────────────────────────────────────────────────────────────────────┘ │
+│                                                                                 │
+│                            🟢 12 viewers connected                             │
+│                                                                                 │
+└─────────────────────────────────────────────────────────────────────────────────┘
+```
+
+### 📱 **iPad Application** (Landscape & Portrait)
+
+#### **iPad Landscape - Controller View**
+```
+┌───────────────────────────────────────────────────────────────────────────────────────┐
+│ Timerfy                                                    Room: ABC123  ⚙️  👤 │
+├─────────────────────────────┬─────────────────────────────────────────────────────────┤
+│                             │                                                         │
+│  🕐 Presentation             │  💬 Live Messages                                      │
+│     15:32 / 20:00           │  ┌─────────────────────────────────────────────────┐   │
+│                             │  │ 🔴 "Break in 2 minutes"           [Show] [Hide] │   │
+│  [▶️] [⏸️] [⏹️] [🔄]         │  │ 🟡 "Submit questions now"          [Show] [Hide] │   │
+│                             │  │ 🔵 "Welcome everyone!"             [Show] [Hide] │   │
+│  ⚠️ Warning Mode            │  └─────────────────────────────────────────────────┘   │
+│                             │                                                         │
+│  🕐 Q&A Session             │  📝 New Message:                                       │
+│     00:00 / 10:00           │  ┌─────────────────────────────────────────────────┐   │
+│                             │  │ [Type message...]                               │   │
+│  [▶️] [⏸️] [⏹️] [🔄]         │  └─────────────────────────────────────────────────┘   │
+│                             │  Priority: [🔴 Critical ▼]              [Send 📤]    │
+│  📝 Edit Timer              │                                                         │
+│                             │  📊 Stats: 12 viewers • 2 active timers               │
+│  ➕ Add New Timer           │                                                         │
+│                             │                                                         │
+└─────────────────────────────┴─────────────────────────────────────────────────────────┘
+```
+
+#### **iPad Portrait - Viewer Experience**
+```
+┌─────────────────────────────────────────┐
+│           timerfy.io/ABC123             │
+│                                         │
+│                                         │
+│           ⏰ PRESENTATION                │
+│                                         │
+│               15:32                     │
+│                                         │
+│           ⚠️ WARNING STATE               │
+│                                         │
+│    ████████████████████▒▒▒▒▒▒▒▒▒▒       │
+│           78% Complete                  │
+│                                         │
+│                                         │
+│ ┌─────────────────────────────────────┐ │
+│ │ 🔴 Break ends in 2 minutes          │ │
+│ │    Please return to your seats      │ │
+│ └─────────────────────────────────────┘ │
+│                                         │
+│                                         │
+│           🟢 12 viewers connected       │
+│                                         │
+│                                         │
+│         [🔍 Focus Mode] [📱 Share]      │
+│                                         │
+└─────────────────────────────────────────┘
+```
+
+### 📱 **iPhone Application** (Portrait Optimized)
+
+#### **iPhone - Controller (Compact)**
+```
+┌─────────────────────────────┐
+│ ≡ Timerfy        ABC123  ⚙️  │
+├─────────────────────────────┤
+│                             │
+│  🕐 Presentation            │
+│     15:32 / 20:00           │
+│     ⚠️ Warning              │
+│                             │
+│  [▶️] [⏸️] [⏹️] [🔄]         │
+│                             │
+│ ─────────────────────────── │
+│                             │
+│  🕐 Q&A • 00:00/10:00       │
+│  [▶️] [⏸️] [⏹️] [🔄]         │
+│                             │
+│ ─────────────────────────── │
+│                             │
+│  💬 Messages (3)            │
+│  🔴 Break in 2 min [Show]   │
+│  🟡 Questions now  [Show]   │
+│  🔵 Welcome!       [Show]   │
+│                             │
+│  📝 [New message...]        │
+│     [🔴 Critical ▼] [Send]  │
+│                             │
+│ ─────────────────────────── │
+│                             │
+│  📊 12 viewers connected    │
+│  ➕ Add Timer  📱 Share     │
+│                             │
+└─────────────────────────────┘
+```
+
+#### **iPhone - Viewer (Immersive)**
+```
+┌─────────────────────────────┐
+│         ABC123       ⚙️      │
+│                             │
+│                             │
+│     ⏰ PRESENTATION          │
+│                             │
+│         15:32               │
+│                             │
+│     ⚠️ WARNING              │
+│                             │
+│ ████████████████▒▒▒▒▒▒▒▒    │
+│      78% Complete           │
+│                             │
+│                             │
+│ ┌─────────────────────────┐ │
+│ │ 🔴 Break ends in        │ │
+│ │    2 minutes            │ │
+│ └─────────────────────────┘ │
+│                             │
+│                             │
+│                             │
+│   🟢 12 viewers connected   │
+│                             │
+│                             │
+│   [📱 Share] [🔍 Focus]     │
+│                             │
+└─────────────────────────────┘
+```
+
+### 🎨 **Design Features Across Devices**
+
+#### **Responsive Design System**
+- **Desktop** (1200px+): Full-featured dashboard with side-by-side panels
+- **Tablet** (768px-1199px): Adaptive layout with collapsible sections  
+- **Mobile** (320px-767px): Stack-based interface with bottom navigation
+
+#### **Visual States & Animations**
+- **🟢 Normal State**: Blue/green color scheme, steady animations
+- **⚠️ Warning State**: Amber colors, subtle pulse animations  
+- **🚨 Critical State**: Red colors, urgent flash animations
+- **✅ Completed State**: Green checkmark, celebration animations
+
+#### **Real-time Features**
+- **Live Timer Updates**: Sub-second precision across all devices
+- **Message Notifications**: Toast notifications for new messages
+- **Connection Status**: Visual indicators for WebSocket connectivity
+- **User Presence**: Show active viewers and controllers
+
+#### **Accessibility Features**
+- **Screen Reader Support**: Full ARIA labels and semantic HTML
+- **Keyboard Navigation**: Complete keyboard control for all functions
+- **High Contrast Mode**: Enhanced visibility options
+- **Font Scaling**: Support for system font size preferences
+
+### 📸 **Screenshots Coming Soon**
+
+We'll be adding actual screenshots for each device type as we develop the client applications:
+
+- [ ] Desktop Web Controller Dashboard
+- [ ] Desktop Web Viewer Display  
+- [ ] iPad Landscape Controller Interface
+- [ ] iPad Portrait Viewer Experience
+- [ ] iPhone Controller Compact View
+- [ ] iPhone Viewer Immersive Display
+
+### 🚀 **Development Timeline**
+
+- **Q1 2024**: React foundation and core components
+- **Q2 2024**: Controller interface and timer management
+- **Q3 2024**: Viewer interface and message system  
+- **Q4 2024**: Mobile optimization and production release
 
 ## 🚀 Quick Start
 
