@@ -117,7 +117,7 @@ The server follows a layered architecture:
 
 ### 🚧 **REMAINING MILESTONES**
 
-#### **Milestone 7: Performance and Deployment** 
+#### **Milestone 7: Performance and Deployment**  
 - ⏳ **Performance Optimization**: Timer tick optimization, Redis connection pooling
 - ⏳ **Caching Strategy**: Spring Boot @Cacheable annotations
 - ⏳ **Error Handling Enhancement**: Network disconnection retry logic  
