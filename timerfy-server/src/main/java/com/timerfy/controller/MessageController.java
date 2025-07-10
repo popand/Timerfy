@@ -8,6 +8,7 @@ import com.timerfy.exception.MessageNotFoundException;
 import com.timerfy.model.Message;
 import com.timerfy.model.MessagePriority;
 import com.timerfy.service.RoomService;
+import com.timerfy.websocket.MessageEventListener;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -34,6 +35,9 @@ public class MessageController {
     
     @Autowired
     private RoomService roomService;
+    
+    @Autowired
+    private MessageEventListener messageEventListener;
     
     @PostMapping
     @Operation(
@@ -80,6 +84,9 @@ public class MessageController {
             ApiResponse<Message> response = ApiResponse.error("CREATE_FAILED", "Failed to create message");
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
+        
+        // Trigger WebSocket event
+        messageEventListener.handleMessageCreated(roomId, message);
         
         logger.info("Created message {} in room {}", message.getId(), roomId);
         ApiResponse<Message> response = ApiResponse.success(message);
