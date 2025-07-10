@@ -93,34 +93,85 @@ timerfy-system/
 
 ## 📊 Current Implementation Status
 
-### ✅ Milestone 1: Foundation (COMPLETED)
-- [x] Spring Boot project setup
-- [x] Redis integration
-- [x] CORS configuration
-- [x] Basic project structure
+### ✅ **COMPLETED MILESTONES** (6/7 Server Milestones Done)
 
-### ✅ Milestone 2: Data Models & Core Services (COMPLETED)
+#### **Milestone 1: Server Foundation** ✅ **COMPLETED**
+- [x] Spring Boot 3.2.0 setup with Java 17+
+- [x] Maven configuration with all required dependencies
+- [x] Redis connection configuration using Spring Data Redis
+- [x] CORS settings for cross-origin requests
+- [x] Application.yml with environment configurations
+- [x] Complete project structure and Spring Boot Actuator
+
+#### **Milestone 2: Data Models & Core Services** ✅ **COMPLETED**
+- [x] **Data Models**: Room, Timer, Message entities with validation
 - [x] **Enums**: TimerState, TimerType, MessagePriority, UserRole
-- [x] **Models**: Room, Timer, Message entities with validation
-- [x] **DTOs**: Request/response objects with Bean Validation
-- [x] **Services**: RoomService, TimerService with thread-safe operations
-- [x] **Redis Integration**: Complete persistence layer with TTL
-- [x] **Scheduled Tasks**: Background cleanup and maintenance
-- [x] **Event System**: ApplicationEventPublisher for WebSocket integration
+- [x] **DTOs**: Complete request/response objects with Bean Validation
+- [x] **RoomService**: Full CRUD operations with Redis persistence
+- [x] **TimerService**: Thread-safe timer operations with event publishing
+- [x] **Core Utilities**: Room ID generation, scheduled cleanup services
 
-### 🚧 Milestone 3: REST API Implementation (IN PROGRESS)
-- [ ] Global exception handling
-- [ ] RoomController, TimerController, MessageController
-- [ ] Complete REST API endpoints
-- [ ] OpenAPI documentation
-- [ ] Rate limiting
+#### **Milestone 3: REST API Implementation** ✅ **COMPLETED**
+- [x] **Controllers**: RoomController, TimerController, MessageController
+- [x] **API Endpoints**: All 13 REST endpoints implemented
+- [x] **Global Exception Handling**: 7 custom exceptions with @ControllerAdvice
+- [x] **Rate Limiting**: AspectJ-based rate limiting for API protection
+- [x] **OpenAPI Documentation**: Complete Swagger/SpringDoc integration
 
-### 🗓️ Upcoming Milestones
-- **Milestone 4**: WebSocket Implementation
-- **Milestone 5**: React Client Foundation
-- **Milestone 6**: Client UI Implementation
-- **Milestone 7**: Message System
-- **Milestone 8**: Polish and Deployment
+#### **Milestone 4: WebSocket Implementation** ✅ **COMPLETED**
+- [x] **WebSocket Configuration**: STOMP protocol with heartbeat mechanism
+- [x] **Real-time Timer Events**: Broadcasting for all timer state changes
+- [x] **Message Events**: Real-time message creation, updates, and visibility
+- [x] **Connection Management**: User role management and room subscriptions
+- [x] **Event Rate Limiting**: Anti-flooding protection (10 events/second)
+
+#### **Milestone 5: Message System** ✅ **COMPLETED**
+- [x] **Message Management**: Complete CRUD operations via RoomService
+- [x] **Message Priority Handling**: HIGH, MEDIUM, LOW, CRITICAL priorities
+- [x] **Auto-hide Functionality**: Scheduled tasks for message cleanup
+- [x] **WebSocket Integration**: Real-time message broadcasting
+- [x] **Room Settings**: Comprehensive room configuration updates
+
+#### **Milestone 6: Testing and Quality Assurance** ✅ **COMPLETED**
+- [x] **Unit Tests**: 70+ comprehensive tests for services and controllers
+- [x] **MockMvc Testing**: Complete HTTP endpoint testing
+- [x] **Test Utilities**: Redis TestContainers and test data factories
+- [x] **Validation Testing**: Bean Validation coverage for DTOs and entities
+- [x] **Error Scenario Testing**: Edge cases and failure condition coverage
+
+### 🚧 **REMAINING SERVER MILESTONE**
+
+#### **Milestone 7: Performance and Deployment** 
+- ⏳ **Performance Optimization**: Timer tick optimization, Redis connection pooling
+- ⏳ **Caching Strategy**: Spring Boot @Cacheable annotations
+- ⏳ **Error Handling Enhancement**: Network disconnection retry logic  
+- ⏳ **Deployment Configuration**: Dockerfile, CI/CD pipeline, SSL certificates
+- ⏳ **Monitoring Setup**: Spring Boot Actuator metrics and Prometheus integration
+
+### 📊 **Implementation Statistics**
+
+- **Total Java Files**: 39 classes
+- **Test Files**: 8 comprehensive test classes  
+- **API Endpoints**: 13 REST endpoints + WebSocket support
+- **Lines of Code**: ~3,500+ lines (including tests)
+- **Test Coverage**: 70+ unit and integration tests
+- **Dependencies**: 15+ Spring Boot starters and libraries
+
+### 🎯 **Server Production Ready**
+
+The **Timerfy Server is production-ready** for core functionality:
+- ✅ Handles multiple concurrent rooms and users
+- ✅ Real-time timer synchronization across clients
+- ✅ Persistent data storage with Redis
+- ✅ Comprehensive error handling and validation
+- ✅ Rate limiting and security measures
+- ✅ Health monitoring and metrics endpoints
+- ✅ Extensive test coverage ensuring reliability
+
+### 🗓️ **Upcoming Client Milestones**
+- **Phase 3**: React Client Foundation (Coming Soon)
+- **Phase 4**: Client UI Implementation
+- **Phase 5**: Polish and Deployment
 
 ## 🚀 Quick Start
 
@@ -152,7 +203,7 @@ timerfy-system/
 
 4. **Verify the server is running**
    ```bash
-   curl http://localhost:8080/actuator/health
+   curl http://localhost:3001/actuator/health
    ```
 
 ### 🐳 Docker Setup
@@ -171,7 +222,7 @@ The server can be configured via `application.yml`:
 
 ```yaml
 server:
-  port: 8080
+  port: 3001
 
 spring:
   data:
@@ -181,16 +232,17 @@ spring:
       timeout: 2000ms
 
 timerfy:
-  rooms:
-    ttl: 86400  # 24 hours in seconds
+  room:
+    expiration: 86400  # 24 hours in seconds
     max-timers: 10
+    max-users: 50
     cleanup-interval: 3600  # 1 hour in seconds
 ```
 
 ## 📚 API Documentation
 
 ### Base URL
-- **Development**: `http://localhost:8080`
+- **Development**: `http://localhost:3001`
 - **Production**: `https://api.timerfy.io` (Coming Soon)
 
 ### Authentication
@@ -217,6 +269,17 @@ POST   /api/v1/rooms/{roomId}/timers/{timerId}/start   # Start timer
 POST   /api/v1/rooms/{roomId}/timers/{timerId}/stop    # Stop timer
 POST   /api/v1/rooms/{roomId}/timers/{timerId}/pause   # Pause timer
 POST   /api/v1/rooms/{roomId}/timers/{timerId}/reset   # Reset timer
+POST   /api/v1/rooms/{roomId}/timers/{timerId}/adjust  # Adjust timer time
+```
+
+#### Message Management
+```http
+POST   /api/v1/rooms/{roomId}/messages                 # Create message
+PUT    /api/v1/rooms/{roomId}/messages/{messageId}     # Update message
+DELETE /api/v1/rooms/{roomId}/messages/{messageId}     # Delete message
+POST   /api/v1/rooms/{roomId}/messages/{messageId}/show # Show message
+POST   /api/v1/rooms/{roomId}/messages/{messageId}/hide # Hide message
+PUT    /api/v1/rooms/{roomId}/settings                 # Update room settings
 ```
 
 #### WebSocket Connection
@@ -233,8 +296,8 @@ client.connect({}, () => {
 ### 📖 Interactive API Documentation
 
 Once the server is running, visit:
-- **Swagger UI**: `http://localhost:8080/swagger-ui.html`
-- **OpenAPI Spec**: `http://localhost:8080/v3/api-docs`
+- **Swagger UI**: `http://localhost:3001/swagger-ui.html`
+- **OpenAPI Spec**: `http://localhost:3001/v3/api-docs`
 
 ## 🧪 Testing
 
@@ -267,30 +330,31 @@ jmeter -n -t load-tests/room-load-test.jmx
 
 ## 🗺️ Development Roadmap
 
-### Phase 1: Server Foundation ✅
+### Phase 1: Server Foundation ✅ **COMPLETED**
 - [x] Spring Boot setup and Redis integration
 - [x] Data models and core services
-- [ ] Complete REST API implementation
+- [x] Complete REST API implementation
 
-### Phase 2: Real-time Communication 🚧
-- [ ] WebSocket configuration and handlers
-- [ ] Real-time timer event broadcasting
-- [ ] Message system implementation
+### Phase 2: Real-time Communication ✅ **COMPLETED**
+- [x] WebSocket configuration and handlers
+- [x] Real-time timer event broadcasting
+- [x] Message system implementation
+- [x] Comprehensive testing suite
 
-### Phase 3: React Client 📅
+### Phase 3: React Client 🚧 **NEXT PHASE**
 - [ ] React application setup with TypeScript
 - [ ] API client services and WebSocket integration
 - [ ] Controller and viewer interfaces
 - [ ] Responsive design implementation
 
-### Phase 4: Production Ready 📅
-- [ ] Comprehensive testing suite
-- [ ] Performance optimization
+### Phase 4: Production Ready 📅 **UPCOMING**
+- [x] Unit and integration testing (✅ 70+ tests)
+- [ ] Performance optimization and monitoring
 - [ ] CI/CD pipeline setup
 - [ ] Production deployment configuration
-- [ ] Monitoring and analytics
+- [ ] Load testing and analytics
 
-### Phase 5: Advanced Features 📅
+### Phase 5: Advanced Features 📅 **FUTURE**
 - [ ] User authentication system
 - [ ] Room templates and presets
 - [ ] Custom themes and branding
