@@ -24,7 +24,7 @@ Timerfy is a web-based distributed countdown timer system designed as a free, op
 
 - **🚀 Real-time Synchronization**: Sub-100ms latency across all connected devices
 - **🏗️ Decoupled Architecture**: Independent client and server applications
-- **📱 Multi-device Support**: Works seamlessly across desktop, tablet, and mobile ([See UI Previews](#-upcoming-client-applications))
+- **📱 Multi-device Support**: Works seamlessly across desktop, tablet, and mobile ([See Screenshots](#-client-applications))
 - **⚡ High Performance**: Supports 50+ concurrent rooms with 20+ viewers each
 - **🔄 Auto-cleanup**: Rooms automatically expire after 24 hours
 - **🎨 Customizable**: Flexible timer configurations and message system
@@ -174,11 +174,11 @@ The **Timerfy Server is production-ready** for core functionality:
 - **Phase 4**: Client UI Implementation
 - **Phase 5**: Polish and Deployment
 
-## 📱 Upcoming Client Applications
+## 📱 Client Applications
 
-> **🚀 Server Ready!** The Timerfy server is complete and running. These client applications will connect to the existing API and WebSocket endpoints.
+> **🚀 Full Stack Complete!** Both the Timerfy server and client applications are implemented and working together seamlessly.
 
-Timerfy will feature responsive React applications optimized for different devices and use cases. Here's what to expect:
+Timerfy features responsive React applications optimized for different devices and use cases. Here's what's available:
 
 ### 🖥️ **Desktop Web Application**
 
@@ -382,23 +382,28 @@ Timerfy will feature responsive React applications optimized for different devic
 - **High Contrast Mode**: Enhanced visibility options
 - **Font Scaling**: Support for system font size preferences
 
-### 📸 **Screenshots Coming Soon**
+### 📸 **Application Screenshots**
 
-We'll be adding actual screenshots for each device type as we develop the client applications:
+Here are the actual screenshots of the Timerfy client applications across different devices:
 
-- [ ] Desktop Web Controller Dashboard
-- [ ] Desktop Web Viewer Display  
-- [ ] iPad Landscape Controller Interface
-- [ ] iPad Portrait Viewer Experience
-- [ ] iPhone Controller Compact View
-- [ ] iPhone Viewer Immersive Display
+#### **🖥️ Desktop Web Application**
+![Desktop Web Application](screenshots/webapp.png)
+*Full-featured controller dashboard with timer management, message system, and real-time synchronization*
+
+#### **📱 iPad Application** 
+![iPad Application](screenshots/ipad.png)
+*Responsive tablet interface optimized for both landscape and portrait orientations*
+
+#### **📱 iPhone Application**
+![iPhone Application](screenshots/phone.png)
+*Mobile-optimized interface with compact controls and immersive viewer experience*
 
 ### 🚀 **Development Timeline**
 
-- **Q1 2024**: React foundation and core components
-- **Q2 2024**: Controller interface and timer management
-- **Q3 2024**: Viewer interface and message system  
-- **Q4 2024**: Mobile optimization and production release
+- **✅ Q1 2024**: React foundation and core components - **COMPLETED**
+- **✅ Q2 2024**: Controller interface and timer management - **COMPLETED**
+- **✅ Q3 2024**: Viewer interface and message system - **COMPLETED**
+- **🔄 Q4 2024**: Mobile optimization and production release - **IN PROGRESS**
 
 ## 🚀 Quick Start
 
