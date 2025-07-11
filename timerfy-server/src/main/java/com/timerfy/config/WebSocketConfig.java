@@ -9,6 +9,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
+import org.springframework.lang.NonNull;
 
 @Configuration
 @EnableWebSocketMessageBroker
@@ -27,7 +28,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     }
     
     @Override
-    public void configureMessageBroker(MessageBrokerRegistry config) {
+    public void configureMessageBroker(@NonNull MessageBrokerRegistry config) {
         // Enable simple message broker with destination prefixes
         config.enableSimpleBroker("/topic", "/queue")
               .setHeartbeatValue(new long[]{10000, 10000}) // 10 seconds heartbeat
@@ -41,7 +42,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     }
     
     @Override
-    public void registerStompEndpoints(StompEndpointRegistry registry) {
+    public void registerStompEndpoints(@NonNull StompEndpointRegistry registry) {
         // Register STOMP endpoint with SockJS fallback
         registry.addEndpoint("/ws")
                 .setAllowedOrigins(allowedOrigins)
