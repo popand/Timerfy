@@ -6,7 +6,6 @@ import com.timerfy.dto.UpdateMessageRequest;
 import com.timerfy.exception.RoomNotFoundException;
 import com.timerfy.exception.MessageNotFoundException;
 import com.timerfy.model.Message;
-import com.timerfy.model.MessagePriority;
 import com.timerfy.service.RoomService;
 import com.timerfy.websocket.MessageEventListener;
 import io.swagger.v3.oas.annotations.Operation;

@@ -39,7 +39,7 @@ class RoomControllerTest {
     @BeforeEach
     void setUp() {
         testRoom = new Room(TEST_ROOM_ID);
-        testRoom.setCreatedAt(LocalDateTime.now());
+        testRoom.setCreated(LocalDateTime.now());
         testRoom.setLastActivity(LocalDateTime.now());
     }
 

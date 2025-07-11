@@ -9,7 +9,6 @@ import com.timerfy.exception.TimerNotFoundException;
 import com.timerfy.exception.TimerLimitExceededException;
 import com.timerfy.exception.InvalidTimerStateException;
 import com.timerfy.model.Timer;
-import com.timerfy.model.TimerType;
 import com.timerfy.service.RoomService;
 import com.timerfy.service.TimerService;
 import io.swagger.v3.oas.annotations.Operation;
