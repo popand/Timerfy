@@ -2,7 +2,6 @@ package com.timerfy.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.timerfy.dto.RoomSettingsRequest;
-import com.timerfy.exception.RoomNotFoundException;
 import com.timerfy.model.Room;
 import com.timerfy.service.RoomService;
 import org.junit.jupiter.api.BeforeEach;

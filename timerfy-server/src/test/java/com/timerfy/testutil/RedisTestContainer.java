@@ -11,18 +11,27 @@ import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
+import org.junit.jupiter.api.AfterAll;
 
 @Testcontainers
 @TestConfiguration
 public class RedisTestContainer {
 
     @Container
+    @SuppressWarnings("resource")
     static GenericContainer<?> redis = new GenericContainer<>(DockerImageName.parse("redis:6.2-alpine"))
             .withExposedPorts(6379)
             .withReuse(true);
 
     static {
         redis.start();
+    }
+
+    @AfterAll
+    static void cleanup() {
+        if (redis != null && redis.isRunning()) {
+            redis.close();
+        }
     }
 
     @Bean
@@ -50,8 +59,9 @@ public class RedisTestContainer {
     }
 
     public static void cleanupRedis(RedisTemplate<String, String> redisTemplate) {
-        if (redisTemplate.getConnectionFactory() != null) {
-            redisTemplate.getConnectionFactory().getConnection().serverCommands().flushAll();
+        RedisConnectionFactory connectionFactory = redisTemplate.getConnectionFactory();
+        if (connectionFactory != null) {
+            connectionFactory.getConnection().serverCommands().flushAll();
         }
     }
 
